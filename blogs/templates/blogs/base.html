@@ -1,0 +1,25 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'blogs:index' %}">返回首页</a></li>
+            <li><a href="{% url 'blogs:new_post' %}">发布</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            
+                {% if user.is_authenticated %}
+            <li><a href="#"> hello,{{user.username}}</a></li>
+            <li><a href="{% url 'users:logout' %}">注销</a></li>
+                {% else %}
+            <li><a href="{% url 'users:login' %}">登录</a></li>
+            <li><a href="{% url 'users:register' %}">注册</a></li>
+                {% endif %}
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}{% endblock content %}
+</div>
